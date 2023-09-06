@@ -1,5 +1,7 @@
 <?php
 
+require_once(dirname(__FILE__) . '/../../config/config.php');
+
 try {
 
     // ============================================================
@@ -54,10 +56,22 @@ try {
     define('PROJECT_VERSION',           '1.8.7');
     define('PROJECT_HTTP',              'http://localhost/php-api/public/index.php');
 
+    // ============================================================
+    // EMAIL
+    // ============================================================
     define('EMAIL_HOST',                'smtp.gmail.com');
     define('EMAIL_FROM',                'responseconfirm2891471@gmail.com');
     define('EMAIL_PASS',                'ezbgkimvfiolrizn');
     define('EMAIL_PORT',                465);
+
+    // ============================================================
+    // DATABASE
+    // ============================================================
+    define('DB_SERVER',                 'localhost');
+    define('DB_NAME',                   'clientes');
+    define('DB_CHARSET',                CHARSET);    
+    define('DB_USERNAME',               'usuario');
+    define('DB_PASSWORD',               'L4VA22WO8oQizO68kAj16ET234Bu6u');
     
     // ============================================================
     // CONFIG CLASS

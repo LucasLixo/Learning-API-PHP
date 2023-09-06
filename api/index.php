@@ -2,6 +2,6 @@
 
 require_once(dirname(__FILE__) . '/../config/config.php');
 
-echo 'hello word';
+header('Content-Type:application/json');
 
 ?>

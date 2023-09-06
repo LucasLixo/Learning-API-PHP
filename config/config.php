@@ -55,6 +55,13 @@ try {
     define('PROJECT_HTTP',              'http://localhost/php-api/public/index.php');
 
     // ============================================================
+    // CONFIG CLASS
+    // ============================================================
+    define('PURL',                      24);
+    define('TOKEN',                     32);
+    define('CHARSET',                   'UTF8');
+
+    // ============================================================
     // EMAIL
     // ============================================================
     define('EMAIL_HOST',                'smtp.gmail.com');
@@ -70,13 +77,6 @@ try {
     define('DB_CHARSET',                CHARSET);    
     define('DB_USERNAME',               'usuario');
     define('DB_PASSWORD',               'L4VA22WO8oQizO68kAj16ET234Bu6u');
-    
-    // ============================================================
-    // CONFIG CLASS
-    // ============================================================
-    define('PURL',                      24);
-    define('TOKEN',                     32);
-    define('CHARSET',                   'UTF-8');
 
     // ============================================================
     // TIME (in SECONDS)

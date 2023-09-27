@@ -27,10 +27,10 @@ function require_api($class, $function, $method = 'GET', $data = [], $user = nul
     $ch_url .= http_build_query(array(
         'class' => $class,
         'function' => $function,
-        'data' => $data,
-    ), 'VARIABLE_', '&');
+        'variable' => $data,
+    ), 'OPTION_', '&');
     curl_setopt($ch, CURLOPT_URL, $ch_url);
-    return $ch_url;
+    // return $ch_url;
 
     // Define Headers
     $ch_headers = array(
@@ -42,17 +42,14 @@ function require_api($class, $function, $method = 'GET', $data = [], $user = nul
     // Autenticação
     if (isset($user) && isset($pass)) {
         curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-        curl_setopt($ch, CURLOPT_USERNAME,  $user);
-        curl_setopt($ch, CURLOPT_PASSWORD,  $pass);
+        curl_setopt($ch, CURLOPT_USERPWD, "$user:$pass");
     }
     // Retorna a resposta como uma string
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     // Ignora a verificação do certificado SSL
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     // Versão do HTTP
-    curl_setopt($ch, CURLOPT_HTTP_VERSION,  CURL_HTTP_VERSION_1_0);
-    // Define porta alternativa
-    curl_setopt($ch, CURLOPT_PORT,  8080);
+    curl_setopt($ch, CURLOPT_HTTP_VERSION,  CURL_HTTP_VERSION_2_0);
     // Define o protocolo 
     curl_setopt($ch, CURLOPT_PROTOCOLS,  CURLPROTO_HTTP);
     // Define em milisegundos tempo maximo para a execução 
@@ -64,8 +61,26 @@ function require_api($class, $function, $method = 'GET', $data = [], $user = nul
     // Fecha o cURL
     curl_close($ch);
 
+    if (curl_errno($ch)) {
+        $erro = 'Erro cURL: ' . curl_error($ch);
+    } else {
+        $erro = null;
+    }
+
     // Retorna o resultado
-    return array('results' => $ch_response);
+    return array(
+        'require' => array(
+            'url' => $ch_url,
+            'class' => $class,
+            'function' => $function,
+            'method' => $method,
+            'data' => $data,
+            'user' => $user,
+            'pass' => $pass,
+            'erro' => $erro
+        ),
+        'response' => $ch_response,
+    );
 }
 
 ?>

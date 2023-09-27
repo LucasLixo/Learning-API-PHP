@@ -38,36 +38,21 @@ try {
     define('AES_KEY',                   $Json->Crypt->AesKey);
     define('AES_IV',                    $Json->Crypt->AesIv);
     
-    // REFFERER
-    define('RefPrimary',                $Json->Get->Referrer[0]);
-    define('RefSecundary',              $Json->Get->Referrer[1]);
-    define('RefTertiarty',              $Json->Get->Referrer[2]);
-    define('RefFourth',                 $Json->Get->Referrer[3]);
-
-    // REQUIRE
-    define('ReqPrimary',                $Json->Get->Require[0]);
-
     // ============================================================
     // PROJECT
     // ============================================================
-    define('PROJECT_NAME',              'Data Manage');
+    define('PROJECT_NAME',              'API-PHP');
     define('PROJECT_VERSION',           '1.8.7');
-    define('PROJECT_HTTP',              'http://localhost/php-api/public/index.php');
+    define('PROJECT_HTTP',              'http://localhost/php-api/index.php');
+
+    define('PROJECT_API',               'http://localhost/php-api/api/index.php');
 
     // ============================================================
     // CONFIG CLASS
     // ============================================================
     define('PURL',                      24);
     define('TOKEN',                     32);
-    define('CHARSET',                   'UTF8');
-
-    // ============================================================
-    // EMAIL
-    // ============================================================
-    define('EMAIL_HOST',                'smtp.gmail.com');
-    define('EMAIL_FROM',                'responseconfirm2891471@gmail.com');
-    define('EMAIL_PASS',                'ezbgkimvfiolrizn');
-    define('EMAIL_PORT',                465);
+    define('CHARSET',                   'UTF-8');
 
     // ============================================================
     // DATABASE

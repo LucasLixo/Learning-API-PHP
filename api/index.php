@@ -1,39 +1,57 @@
 <?php
 
 require_once(dirname(__FILE__) . '/../config/config.php');
-require_once(dirname(__FILE__) . '/inc/api_response.php');
-require_once(dirname(__FILE__) . '/inc/api_logic.php');
+require_once(dirname(__FILE__) . '/./inc/api_verify.php');
 
-// ------------------------------------------------------------
-require_once(dirname(__FILE__) . '/inc/functions.php');
+// ===============================================================
+// instanciate the api_classe
+$api_verify = new api_verify();
 
-// ------------------------------------------------------------
-// Instanciate the api_classe
-$api_response = new api_response();
-
-// ------------------------------------------------------------
+// ===============================================================
 // check if method is valid
-if(!$api_response->check_method($_SERVER['REQUEST_METHOD']))
+if(!$api_verify->check_method($_SERVER['REQUEST_METHOD']))
 {
     // send error reponse
-    $api_response->api_request_error('Invalid request method.');
+    $api_verify->api_request_error('Invalid request method.');
 }
 
-// ------------------------------------------------------------
+// ===============================================================
 // set request method
-$api_response->set_method($_SERVER['REQUEST_METHOD']);
+$api_verify->set_method($_SERVER['REQUEST_METHOD']);
 $params = null;
-switch ($api_response->get_method()) {
-    case 'GET':
-        $params = $_GET;
-        $api_response->set_variable($_GET['variable']);
-        break;
-    case 'POST':
-        $params = $_POST;
-        $api_response->set_variable($_POST['variable']);
-        break;
+if($api_verify->get_method() == 'GET'){
+    $api_verify->set_class($_GET['class']);
+    $api_verify->set_function($_GET['function']);
+    $params = $_GET;
+} elseif($api_verify->get_method() == 'POST'){
+    $api_verify->set_class($_POST['class']);
+    $api_verify->set_function($_POST['function']);
+    $params = $_POST;
 }
 
-$api_response->send_api_status();
+$request_class = $api_verify->get_class();
+$request_function = $api_verify->get_function();
+
+require_once(dirname(__FILE__) . "/class/$request_class.php");
+$request_class = new $request_class();
+
+$request_results = $request_class->$request_function();
+
+$api_verify->add_do_data('data', $request_results);
+
+$api_verify->send_response();
+
+
+
+
+
+
+
+
+
+
+
+
+// $api_verify->send_api_status();
 
 ?>

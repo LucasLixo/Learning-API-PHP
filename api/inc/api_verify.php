@@ -1,9 +1,7 @@
 <?php
 
-require_once(dirname(__FILE__) . '/../../config/config.php');
+class api_verify {
 
-class api_response {
-    
     private $data;
     private $available_methods = ['GET', 'POST'];
 
@@ -35,23 +33,32 @@ class api_response {
     }
 
     // ===============================================================
-    public function set_variable($variable)
+    public function set_class($class)
     {
-        // sets the request variable
-        $this->data['variable'] = $variable;
+        // sets the request class
+        $this->data['class'] = $class;
     }
 
     // ===============================================================
-    public function get_variable()
+    public function get_class()
     {
-        // returns the current request variable
-        return $this->data['variable'];
-        // parse_str($this->data['variable'], $dataArray);
+        // returns the current request class
+        return $this->data['class'];
     }
 
+    // ===============================================================
+    public function set_function($function)
+    {
+        // sets the request function
+        $this->data['function'] = $function;
+    }
 
-
-
+    // ===============================================================
+    public function get_function()
+    {
+        // returns the current request function
+        return $this->data['function'];
+    }
 
 
 
@@ -63,6 +70,25 @@ class api_response {
 
 
     
+
+    // ===============================================================
+    public function add_do_data($key, $value)
+    {
+        // add new key to data
+        $this->data[$key] = $value;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
     // ===============================================================
     public function api_request_error($message = '')
     {

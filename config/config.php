@@ -43,9 +43,9 @@ try {
     // ============================================================
     define('PROJECT_NAME',              'API-PHP');
     define('PROJECT_VERSION',           '1.8.7');
-    define('PROJECT_HTTP',              'http://localhost/php-api/index.php');
+    define('PROJECT_HTTP',              'http://localhost/PHP-Api/index.php');
 
-    define('PROJECT_API',               'http://localhost/php-api/api/index.php');
+    define('PROJECT_API',               'http://localhost/PHP-Api/api/index.php');
 
     // ============================================================
     // CONFIG CLASS

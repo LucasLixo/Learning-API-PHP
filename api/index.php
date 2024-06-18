@@ -29,29 +29,33 @@ if($api_verify->get_method() == 'GET'){
     $params = $_POST;
 }
 
-$request_class = $api_verify->get_class();
+$request_class_name = $api_verify->get_class();
 $request_function = $api_verify->get_function();
 
-require_once(dirname(__FILE__) . "/class/$request_class.php");
-$request_class = new $request_class();
+if (!file_exists(dirname(__FILE__) . "/class/$request_class_name.php")) {
+    $api_verify->api_request_error('Classe não encontrada.');
+}
 
+require_once(dirname(__FILE__) . "/class/$request_class_name.php");
+
+// Verifica se a classe existe
+if (!class_exists($request_class_name)) {
+    $api_verify->api_request_error('Classe não encontrada.');
+}
+
+// Instancia a classe
+$request_class = new $request_class_name($request_function, $params);
+
+// Verifica se o método existe na classe
+if (!$request_class->endpoint_exists()) {
+    $api_verify->api_request_error('Método não encontrado.');
+}
+
+// Executa o método
 $request_results = $request_class->$request_function();
 
 $api_verify->add_do_data('data', $request_results);
 
 $api_verify->send_response();
-
-
-
-
-
-
-
-
-
-
-
-
-// $api_verify->send_api_status();
 
 ?>

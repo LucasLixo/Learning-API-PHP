@@ -47,7 +47,7 @@ function api_request($class, $function, $method = 'GET', $variables = [], $user 
 
     // Define Headers
     $ch_headers = array(
-        'Content-type: charset=UTF-8', // application/json - text/plain; 
+        'Content-type: charset=' . CHARSET, // application/json - text/plain; 
         // 'Content-length: 100',
     );
     curl_setopt($ch, CURLOPT_HTTPHEADER,  $ch_headers);
@@ -79,19 +79,20 @@ function api_request($class, $function, $method = 'GET', $variables = [], $user 
     }
 
     // Retorna o resultado
-    return array(
-        'require' => array(
-            'url' => $ch_url,
-            'class' => $class,
-            'function' => $function,
-            'method' => $method,
-            'data' => $variables,
-            'user' => $user,
-            'pass' => $pass,
-            'erro' => $erro
-        ),
-        'response' => json_decode($ch_response, true),
-    );
+    // return array(
+    //     'require' => array(
+    //         'url' => $ch_url,
+    //         'class' => $class,
+    //         'function' => $function,
+    //         'method' => $method,
+    //         'data' => $variables,
+    //         'user' => $user,
+    //         'pass' => $pass,
+    //         'erro' => $erro
+    //     ),
+    //     'response' => json_decode($ch_response, true),
+    // );
+    return $ch_response;
 }
 
 ?>

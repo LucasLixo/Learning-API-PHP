@@ -43,9 +43,9 @@ class init
     }
 
     // --------------------------------------------------
-    public function clients()
+    public function customers()
     {
-        $csvFile = __DIR__ . '/../db/clientes.csv';
+        $csvFile = __DIR__ . '/../db/customers.csv';
 
         if (!file_exists($csvFile) || !is_readable($csvFile)) {
             return 'Arquivo CSV não encontrado ou não legível.';
@@ -66,9 +66,9 @@ class init
     }
     
     // --------------------------------------------------
-    public function lanchonete()
+    public function cafeteria()
     {
-        $csvFile = __DIR__ . '/../db/lanchonete.csv';
+        $csvFile = __DIR__ . '/../db/cafeteria.csv';
 
         if (!file_exists($csvFile) || !is_readable($csvFile)) {
             return 'Arquivo CSV não encontrado ou não legível.';

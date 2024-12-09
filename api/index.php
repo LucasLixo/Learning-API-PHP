@@ -54,7 +54,8 @@ if (!$request_class->endpoint_exists()) {
 // Executa o método
 $request_results = $request_class->$request_function();
 
-$api_verify->add_do_data('data', $request_results);
+$api_verify->add_data('lenght', count($request_results));
+$api_verify->add_data('results', $request_results);
 
 $api_verify->send_response();
 

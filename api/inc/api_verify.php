@@ -72,7 +72,7 @@ class api_verify {
     
 
     // ===============================================================
-    public function add_do_data($key, $value)
+    public function add_data($key, $value)
     {
         // add new key to data
         $this->data[$key] = $value;

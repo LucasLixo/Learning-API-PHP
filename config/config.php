@@ -43,9 +43,9 @@ try {
     // ============================================================
     define('PROJECT_NAME',              'API-PHP');
     define('PROJECT_VERSION',           '1.8.7');
-    define('PROJECT_HTTP',              'http://localhost/PHP-Api/index.php');
+    define('PROJECT_HTTP',              'http://localhost/index.php');
 
-    define('PROJECT_API',               'http://localhost/PHP-Api/api/index.php');
+    define('PROJECT_API',               'http://localhost/api/index.php');
 
     // ============================================================
     // CONFIG CLASS
@@ -58,7 +58,7 @@ try {
     // DATABASE
     // ============================================================
     define('DB_SERVER',                 'localhost');
-    define('DB_NAME',                   'clientes');
+    define('DB_NAME',                   'customers');
     define('DB_CHARSET',                CHARSET);    
     define('DB_USERNAME',               'usuario');
     define('DB_PASSWORD',               'L4VA22WO8oQizO68kAj16ET234Bu6u');

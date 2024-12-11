@@ -2,7 +2,7 @@
 
 require_once(dirname(__FILE__) . '/../config/config.php');
 
-function api_request($class, $function, $method = 'GET', $variables = [], $user = null, $pass = null)
+function api_request(string $class, string $function, string $method = 'GET', array $variables = [], string|null $user = null, string|null $pass = null)
 {
     // Inicia o cURL
     $ch = curl_init();
@@ -17,7 +17,7 @@ function api_request($class, $function, $method = 'GET', $variables = [], $user 
 
     // Define a requisição como GET / POST
     switch ($method) {
-        // if request is GET
+            // if request is GET
         case 'GET':
             curl_setopt($ch, CURLOPT_HTTPGET,  true);
             $ch_url .= '?';
@@ -25,11 +25,11 @@ function api_request($class, $function, $method = 'GET', $variables = [], $user 
                 'class' => $class,
                 'function' => $function,
             ));
-            if(!empty($variables)){
+            if (!empty($variables)) {
                 $ch_url .= '&' . http_build_query($variables, 'OPTION_', '&');
             }
             break;
-        // if request if POST
+            // if request if POST
         case 'POST':
             curl_setopt($ch, CURLOPT_POST,  true);
             $variables = array_merge([
@@ -39,7 +39,7 @@ function api_request($class, $function, $method = 'GET', $variables = [], $user 
             curl_setopt($ch, CURLOPT_POSTFIELDS, $variables);
             break;
         default:
-            return false;
+            throw new Exception("Error Processing Request", 1);
     }
 
     // return $ch_url;
@@ -51,7 +51,7 @@ function api_request($class, $function, $method = 'GET', $variables = [], $user 
         // 'Content-length: 100',
     );
     curl_setopt($ch, CURLOPT_HTTPHEADER,  $ch_headers);
-    
+
     // Autenticação
     if (isset($user) && isset($pass)) {
         curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
@@ -92,7 +92,7 @@ function api_request($class, $function, $method = 'GET', $variables = [], $user 
     //     ),
     //     'response' => json_decode($ch_response, true),
     // );
-    return $ch_response;
+    return $erro ?? $ch_response;
 }
 
 ?>

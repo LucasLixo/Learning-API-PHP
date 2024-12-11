@@ -1,5 +1,7 @@
 <?php
 
+include_once(dirname(__FILE__) . './inc/open.php');
+
 class init
 {
     private $endpoint;
@@ -13,16 +15,16 @@ class init
     }
 
     // --------------------------------------------------
-    public function endpoint_exists()
+    public function endpoint_exists(): bool
     {
-        // Verifica se o método da classe é válido
+        // Checks if the class method is valid
         return method_exists($this, $this->endpoint);
     }
 
     // --------------------------------------------------
-    public function error_response($message)
+    public function error_response($message): array
     {
-        // Retorna um erro da API
+        // Returns an API error
         return [
             'status' => 'ERROR',
             'message' => $message,
@@ -31,61 +33,26 @@ class init
     }
 
     // --------------------------------------------------
-    public function status()
+    public function status(): string
     {
         return 'Hello World';
     }
 
     // --------------------------------------------------
-    public function data()
+    public function data(): array
     {
         return $this->params;
     }
 
     // --------------------------------------------------
-    public function customers()
+    public function customers(): string|array
     {
-        $csvFile = __DIR__ . '/../db/customers.csv';
-
-        if (!file_exists($csvFile) || !is_readable($csvFile)) {
-            return 'Arquivo CSV não encontrado ou não legível.';
-        }
-
-        $data = array();
-
-        if (($handle = fopen($csvFile, 'r')) !== false) {
-            while (($row = fgetcsv($handle, 1000, ',')) !== false) {
-                $data[] = $row;
-            }
-            fclose($handle);
-        } else {
-            return 'Erro ao abrir o arquivo.';
-        }
-
-        return $data;
+        return openCSV('customers');
     }
-    
+
     // --------------------------------------------------
-    public function cafeteria()
+    public function cafeteria(): string|array
     {
-        $csvFile = __DIR__ . '/../db/cafeteria.csv';
-
-        if (!file_exists($csvFile) || !is_readable($csvFile)) {
-            return 'Arquivo CSV não encontrado ou não legível.';
-        }
-
-        $data = array();
-
-        if (($handle = fopen($csvFile, 'r')) !== false) {
-            while (($row = fgetcsv($handle, 1000, ',')) !== false) {
-                $data[] = $row;
-            }
-            fclose($handle);
-        } else {
-            return 'Erro ao abrir o arquivo.';
-        }
-
-        return $data;
+        return openCSV('cafeteria');
     }
 }
-?>

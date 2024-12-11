@@ -1,9 +1,14 @@
 <?php
 
-class api_verify {
+class api_verify
+{
 
     private $data;
     private $available_methods = ['GET', 'POST'];
+    private $valid_credentials = [
+        'user' => 'admin',
+        'pass' => 'password123'
+    ];
 
     // ===============================================================
     public function __construct()
@@ -12,52 +17,62 @@ class api_verify {
     }
 
     // ===============================================================
-    public function check_method($method)
+    public function check_method(string $method): bool
     {
         // check if method is valid
         return in_array($method, $this->available_methods);
     }
 
     // ===============================================================
-    public function set_method($method)
+    public function set_method(string $method): void
     {
         // sets the response method
         $this->data['method'] = $method;
     }
 
     // ===============================================================
-    public function get_method()
+    public function get_method(): string
     {
         // returns the request method
         return $this->data['method'];
     }
 
     // ===============================================================
-    public function set_class($class)
+    public function set_class(string $class): void
     {
         // sets the request class
         $this->data['class'] = $class;
     }
 
     // ===============================================================
-    public function get_class()
+    public function get_class(): string
     {
         // returns the current request class
         return $this->data['class'];
     }
 
     // ===============================================================
-    public function set_function($function)
+    public function set_function(string $function): void
     {
         // sets the request function
         $this->data['function'] = $function;
     }
 
     // ===============================================================
-    public function get_function()
+    public function get_function(): string
     {
         // returns the current request function
         return $this->data['function'];
+    }
+
+    // ===============================================================
+    public function authenticate(string $user, string $pass): bool
+    {
+        if ($user === $this->valid_credentials['user'] && $pass === $this->valid_credentials['pass']) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 
@@ -69,10 +84,9 @@ class api_verify {
 
 
 
-    
 
     // ===============================================================
-    public function add_data($key, $value)
+    public function add_data(string $key, mixed $value): void
     {
         // add new key to data
         $this->data[$key] = $value;
@@ -90,7 +104,7 @@ class api_verify {
 
 
     // ===============================================================
-    public function api_request_error($message = '')
+    public function api_request_error(string $message = ''): void
     {
         // output an api error message
 
@@ -105,7 +119,7 @@ class api_verify {
     }
 
     // ===============================================================
-    public function send_api_status()
+    public function send_api_status(): void
     {
         // send api status
         $this->data['status'] = 'SUCCESS';
@@ -114,7 +128,7 @@ class api_verify {
     }
 
     // ===============================================================
-    public function send_response()
+    public function send_response(): void
     {
         // output final response
         header("Content-Type:application/json");
@@ -122,5 +136,3 @@ class api_verify {
         die(1);
     }
 }
-
-?>

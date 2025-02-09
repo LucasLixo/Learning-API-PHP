@@ -27,6 +27,7 @@ header("Content-Type:application/json");
 
 echo api_request(/* class */'init', /* function */'customers', /* method */'GET', /* variables */[], /* user */'admin', /* pass */'password123');
 die(1);
+
 ?>
 ```
 

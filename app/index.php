@@ -4,20 +4,20 @@ require_once(dirname(__FILE__) . '/../config/config.php');
 
 function api_request(string $class, string $function, string $method = 'GET', array $variables = [], string|null $user = null, string|null $pass = null)
 {
-    // Inicia o cURL
+    // Start cURL
     $ch = curl_init();
 
-    // Configura as opções do cURL
+    // Configure cURL options
 
     // return the result as a string
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-    // Define a URL
+    // Define the URL
     $ch_url = PROJECT_API;
 
-    // Define a requisição como GET / POST
+    // Define the request as GET / POST
     switch ($method) {
-            // if request is GET
+        // if request is GET
         case 'GET':
             curl_setopt($ch, CURLOPT_HTTPGET,  true);
             $ch_url .= '?';
@@ -29,7 +29,7 @@ function api_request(string $class, string $function, string $method = 'GET', ar
                 $ch_url .= '&' . http_build_query($variables, 'OPTION_', '&');
             }
             break;
-            // if request if POST
+        // if request if POST
         case 'POST':
             curl_setopt($ch, CURLOPT_POST,  true);
             $variables = array_merge([
@@ -47,29 +47,29 @@ function api_request(string $class, string $function, string $method = 'GET', ar
 
     // Define Headers
     $ch_headers = array(
-        'Content-type: charset=' . CHARSET, // application/json - text/plain; 
+        'Content-type: charset=' . CHARSET, // application/json - text/plain;
         // 'Content-length: 100',
     );
     curl_setopt($ch, CURLOPT_HTTPHEADER,  $ch_headers);
 
-    // Autenticação
+    // Authentication
     if (isset($user) && isset($pass)) {
         curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
         curl_setopt($ch, CURLOPT_USERPWD, "$user:$pass");
     }
-    // Ignora a verificação do certificado SSL
+    // Skip SSL certificate check
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-    // Versão do HTTP
+    // HTTP version
     curl_setopt($ch, CURLOPT_HTTP_VERSION,  CURL_HTTP_VERSION_2_0);
-    // Define o protocolo 
+    // Defines the protocol
     curl_setopt($ch, CURLOPT_PROTOCOLS,  CURLPROTO_HTTP);
-    // Define em milisegundos tempo maximo para a execução 
+    // Defines maximum execution time in milliseconds
     curl_setopt($ch, CURLOPT_TIMEOUT_MS,  6000);
 
-    // Resposta da solicitação
+    // Request response
     $ch_response = curl_exec($ch);
 
-    // Fecha o cURL
+    // Close cURL
     curl_close($ch);
 
     if (curl_errno($ch)) {
@@ -78,19 +78,19 @@ function api_request(string $class, string $function, string $method = 'GET', ar
         $erro = null;
     }
 
-    // Retorna o resultado
+    // Returns the result
     // return array(
-    //     'require' => array(
-    //         'url' => $ch_url,
-    //         'class' => $class,
-    //         'function' => $function,
-    //         'method' => $method,
-    //         'data' => $variables,
-    //         'user' => $user,
-    //         'pass' => $pass,
-    //         'erro' => $erro
-    //     ),
-    //     'response' => json_decode($ch_response, true),
+    // 'require' => array(
+    // 'url' => $ch_url,
+    // 'class' => $class,
+    // 'function' => $function,
+    // 'method' => $method,
+    // 'data' => $variables,
+    // 'user' => $user,
+    // 'pass' => $pass,
+    // 'error' => $error
+    // ),
+    // 'response' => json_decode($ch_response, true),
     // );
     return $erro ?? $ch_response;
 }

@@ -1,6 +1,6 @@
 <div align="center">
 
-# API
+# Learning API in PHP
 
 ## Overview
 

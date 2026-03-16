@@ -3,18 +3,18 @@
 require_once(dirname(__FILE__) . '/../config/config.php');
 require_once(dirname(__FILE__) . './inc/api_verify.php');
 
-// ===============================================================
+// ============================================================
 // instanciate the api_classe
 $api_verify = new api_verify();
 
-// ===============================================================
+// ============================================================
 // check if method is valid
 if (!$api_verify->check_method($_SERVER['REQUEST_METHOD'])) {
     // send error reponse
     $api_verify->api_request_error('Invalid request method.');
 }
 
-// ===============================================================
+// ============================================================
 // set request method
 $api_verify->set_method($_SERVER['REQUEST_METHOD']);
 $params = null;

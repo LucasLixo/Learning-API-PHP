@@ -1,6 +1,6 @@
 <?php
 
-include_once(dirname(__FILE__) . './inc/open.php');
+include_once(dirname(__FILE__) . '/inc/open.php');
 
 class init
 {
@@ -56,3 +56,5 @@ class init
         return openCSV('cafeteria');
     }
 }
+
+?>

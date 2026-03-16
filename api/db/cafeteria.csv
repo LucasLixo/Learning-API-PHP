@@ -1,27 +1,27 @@
-Nome do Lanche,Preço
-Hambúrguer Simples,10.99
-Hambúrguer Duplo,14.99
+Snack Name,Price
+Simple Burger,10.99
+Double Burger,14.99
 Cheeseburger,12.49
-Batata Frita,5.99
-Nuggets (6 unidades),7.99
-Nuggets (12 unidades),12.99
-Cachorro-Quente,8.49
-Pizza de Pepperoni (P),15.99
-Pizza de Queijo (P),14.99
-Pizza de Frango com Catupiry (P),16.99
-Pizza de Calabresa (P),15.99
-Pizza de Vegetariana (P),16.99
-Pizza de Pepperoni (G),19.99
-Pizza de Queijo (G),18.99
-Pizza de Frango com Catupiry (G),21.99
-Pizza de Calabresa (G),20.99
-Pizza de Vegetariana (G),21.99
-Refrigerante (Lata),3.49
-Refrigerante (2 Litros),6.99
-Suco Natural (Copo),4.99
-Milkshake de Baunilha (P),7.49
-Milkshake de Chocolate (P),7.49
-Milkshake de Morango (P),7.49
-Milkshake de Baunilha (G),9.99
-Milkshake de Chocolate (G),9.99
-Milkshake de Morango (G),9.99
+French Fries,5.99
+Chicken Nuggets (6 pieces),7.99
+Chicken Nuggets (12 pieces),12.99
+Hot Dog,8.49
+Pepperoni Pizza (S),15.99
+Cheese Pizza (S),14.99
+Chicken with Catupiry Pizza (S),16.99
+Calabrese Pizza (S),15.99
+Vegetarian Pizza (S),16.99
+Pepperoni Pizza (L),19.99
+Cheese Pizza (L),18.99
+Chicken with Catupiry Pizza (L),21.99
+Calabrese Pizza (L),20.99
+Vegetarian Pizza (L),21.99
+Soda (Can),3.49
+Soda (2 Liters),6.99
+Fresh Juice (Glass),4.99
+Vanilla Milkshake (S),7.49
+Chocolate Milkshake (S),7.49
+Strawberry Milkshake (S),7.49
+Vanilla Milkshake (L),9.99
+Chocolate Milkshake (L),9.99
+Strawberry Milkshake (L),9.99

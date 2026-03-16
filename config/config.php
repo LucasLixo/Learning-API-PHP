@@ -42,7 +42,7 @@ try {
     // ============================================================
     define('PROJECT_NAME',              'API-PHP');
     define('PROJECT_VERSION',           '1.8.7');
-    define('PROJECT_HTTP',              'http://localhost/index.php');
+    define('PROJECT_APP',               'http://localhost/index.php');
 
     define('PROJECT_API',               'http://localhost/api/index.php');
 
@@ -59,23 +59,23 @@ try {
     define('DB_SERVER',                 'localhost');
     define('DB_NAME',                   'customers');
     define('DB_CHARSET',                CHARSET);    
-    define('DB_USERNAME',               'usuario');
+    define('DB_USERNAME',               'user');
     define('DB_PASSWORD',               'L4VA22WO8oQizO68kAj16ET234Bu6u');
 
     // ============================================================
     // TIME (in SECONDS)
     // ============================================================
-    define('__MINUTE',                  60);
-    define('__HOUR',                    60 * 60);
-    define('__DAY',                     60 * 60 * 24);
-    define('__WEEK',                    60 * 60 * 24 * 7);
-    define('__MONTH',                   60 * 60 * 24 * 30);
-    define('__YEAR',                    60 * 60 * 24 * 30 * 365);
+    define('__MINUTE__',                  60);
+    define('__HOUR__',                    60 * 60);
+    define('__DAY__',                     60 * 60 * 24);
+    define('__WEEK__',                    60 * 60 * 24 * 7);
+    define('__MONTH__',                   60 * 60 * 24 * 30);
+    define('__YEAR__',                    60 * 60 * 24 * 30 * 365);
 
 } catch (Exception $e) {
     header('HTTP/1.0 404');
     // $e->getMessage();
-    die;
+    die(1);
 }
 
 ?>

@@ -9,7 +9,7 @@ function api_request(string $class, string $function, string $method = 'GET', ar
 
     // Configure cURL options
 
-    // return the result as a string
+    // Return the result as a string
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
     // Define the URL
@@ -17,7 +17,7 @@ function api_request(string $class, string $function, string $method = 'GET', ar
 
     // Define the request as GET / POST
     switch ($method) {
-        // if request is GET
+        // If request is GET
         case 'GET':
             curl_setopt($ch, CURLOPT_HTTPGET,  true);
             $ch_url .= '?';
@@ -29,7 +29,7 @@ function api_request(string $class, string $function, string $method = 'GET', ar
                 $ch_url .= '&' . http_build_query($variables, 'OPTION_', '&');
             }
             break;
-        // if request if POST
+        // If request if POST
         case 'POST':
             curl_setopt($ch, CURLOPT_POST,  true);
             $variables = array_merge([
@@ -47,7 +47,7 @@ function api_request(string $class, string $function, string $method = 'GET', ar
 
     // Define Headers
     $ch_headers = array(
-        'Content-type: charset=' . CHARSET, // application/json - text/plain;
+        'Content-type: application/json; charset=' . CHARSET, // application/json - text/plain;
         // 'Content-length: 100',
     );
     curl_setopt($ch, CURLOPT_HTTPHEADER,  $ch_headers);
@@ -60,38 +60,24 @@ function api_request(string $class, string $function, string $method = 'GET', ar
     // Skip SSL certificate check
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     // HTTP version
-    curl_setopt($ch, CURLOPT_HTTP_VERSION,  CURL_HTTP_VERSION_2_0);
+    curl_setopt($ch, CURLOPT_HTTP_VERSION,  CURL_HTTP_VERSION_1_1);
     // Defines the protocol
     curl_setopt($ch, CURLOPT_PROTOCOLS,  CURLPROTO_HTTP);
     // Defines maximum execution time in milliseconds
-    curl_setopt($ch, CURLOPT_TIMEOUT_MS,  6000);
+    curl_setopt($ch, CURLOPT_TIMEOUT_MS, (__MINUTE__ / 3) * 1000);
 
     // Request response
     $ch_response = curl_exec($ch);
 
-    // Close cURL
-    curl_close($ch);
-
     if (curl_errno($ch)) {
-        $erro = 'Erro cURL: ' . curl_error($ch);
+        $erro = 'Error cURL: ' . curl_error($ch);
     } else {
         $erro = null;
     }
 
-    // Returns the result
-    // return array(
-    // 'require' => array(
-    // 'url' => $ch_url,
-    // 'class' => $class,
-    // 'function' => $function,
-    // 'method' => $method,
-    // 'data' => $variables,
-    // 'user' => $user,
-    // 'pass' => $pass,
-    // 'error' => $error
-    // ),
-    // 'response' => json_decode($ch_response, true),
-    // );
+    // Close cURL
+    curl_close($ch);
+
     return $erro ?? $ch_response;
 }
 

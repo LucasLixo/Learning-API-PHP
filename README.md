@@ -38,6 +38,14 @@ die(1);
 
 ### Results
 
-| Customers                        | Cafeteria                      |
-| :------------------------------- | -----------------------------: |
-| ![PNG](./result_customers.png) | | ![PNG](./result_cafeteria.png) |
+<pre>
+Table customers.csv
+</pre>
+
+![PNG_0](./result_customers.png)
+
+<pre>
+table cafeteria.csv
+</pre>
+
+![PNG_1](./result_cafeteria.png)
